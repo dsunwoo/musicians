@@ -82,17 +82,24 @@ class Band(object):
             # The above line needs to be cleaned up
             
     def bandsolos(self, length):
-        drumcheck="Drummer" in self.bandmates.values()
-        print(drumcheck)
-        for n in range (1,5):
-            if n==1:
+        c=0
+        d=0
+        for v in self.bandmates.values():
+            c+=1
+            if isinstance(v,Drummer):
+                d=1
+                v.count()
+                v.solo(length)
+                v.combust()
                 print()
-                print("All right!")
+            if c==len(self.bandmates) and d==0:
+                print("Your band does not contain a drummer.  Musicians will start performing solos now!")
                 print()
-                print(n)
-            else:
+        for bname, instvalue in self.bandmates.items():
+            if not isinstance(instvalue,Drummer):
+                print("Solo for " + bname + ": ")
+                instvalue.solo(length)
                 print()
-                print(n)
         
 def main():
     bandname=input("What is the name of your band? ")
