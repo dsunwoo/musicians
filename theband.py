@@ -29,10 +29,10 @@ class Drummer(Musician):
     def count(self):
         for n in range (1,5):
             if n==1:
-                print("\nAll right!\n")
-                print(n)
+                print("\n\"All right!\"\n")
+                print("\"" + str(n) + "\"")
             else:
-                print("\n" + str(n))
+                print("\n\"" + str(n) + "\"")
             
     def combust(self):
         print("Your drummer has spontaneously combusted!")
@@ -61,8 +61,8 @@ class Band(object):
     def fire(self):
         print("\nCurrent members of your band: ")
         for k,v in self.bandmates.items():   # This needs to be cleaned up
-            print(k + " is a " + str(v) + "\n")
-        if input("Do you want to fire any members? ")[0].lower() in ["y"]:
+            print(k + " is a " + str(v))
+        if input("\nDo you want to fire any members? ")[0].lower() in ["y"]:
             fired=input("\nWho do you want to fire? ")
             del self.bandmates[fired]
             print("\n" + fired + " has been fired! Your band now consists of: \n")
@@ -73,10 +73,11 @@ class Band(object):
     def bandsolos(self, length):
         c=0
         d=0
-        for v in self.bandmates.values():
+        for k,v in self.bandmates.items():
             c+=1
             if isinstance(v,Drummer):
                 d=1
+                print("\n" + k + " starts the countdown:")
                 v.count()
                 v.solo(length)
                 v.combust()
