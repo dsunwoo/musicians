@@ -29,13 +29,10 @@ class Drummer(Musician):
     def count(self):
         for n in range (1,5):
             if n==1:
-                print()
-                print("All right!")
-                print()
+                print("\nAll right!\n")
                 print(n)
             else:
-                print()
-                print(n)
+                print("\n" + str(n))
             
     def combust(self):
         print("Your drummer has spontaneously combusted!")
@@ -46,11 +43,9 @@ class Band(object):
     
     def hire(self):
         hiring=True
-        hired=input("Enter name of new bandmate: ")
-        print()
+        hired=input("\nEnter name of new bandmate: ")
         while hiring:
-            instrument=input("What do they play? 1) Guitar  2) Drums  3) Bass :     ")
-            print()
+            instrument=input("\nWhat do they play? 1) Guitar  2) Drums  3) Bass :     ")
             if int(instrument)==1:
                 self.bandmates[hired]=Guitarist()
                 hiring=False
@@ -61,24 +56,18 @@ class Band(object):
                 self.bandmates[hired]=Bassist()
                 hiring=False
             else:
-                print("Please enter 1,2, or 3!")
-                print()
+                print("\nPlease enter 1,2, or 3!\n")
         
     def fire(self):
-        print("Current members of your band: ")
+        print("\nCurrent members of your band: ")
         for k,v in self.bandmates.items():   # This needs to be cleaned up
-            print(k + " is a " + str(v))
-            print()
+            print(k + " is a " + str(v) + "\n")
         if input("Do you want to fire any members? ")[0].lower() in ["y"]:
-            print()
-            fired=input("Who do you want to fire? ")
-            print()
+            fired=input("\nWho do you want to fire? ")
             del self.bandmates[fired]
-            print(fired + " has been fired! Your band now consists of: ")
-            print()
+            print("\n" + fired + " has been fired! Your band now consists of: \n")
             for k in self.bandmates.keys():
                 print(k)
-            print()
             # The above line needs to be cleaned up
             
     def bandsolos(self, length):
@@ -91,19 +80,15 @@ class Band(object):
                 v.count()
                 v.solo(length)
                 v.combust()
-                print()
             if c==len(self.bandmates) and d==0:
-                print("Your band does not contain a drummer.  Musicians will start performing solos now!")
-                print()
+                print("\nYour band does not contain a drummer.  Musicians will start performing solos now!\n")
         for bname, instvalue in self.bandmates.items():
             if not isinstance(instvalue,Drummer):
-                print("Solo for " + bname + ": ")
+                print("\nSolo for " + bname + ": ")
                 instvalue.solo(length)
-                print()
         
 def main():
     bandname=input("What is the name of your band? ")
-    print()
     bandname=Band()
     #hirenum=input("How many musicians do you want to hire? ")
     #try:
@@ -114,7 +99,7 @@ def main():
     bandname.hire()
     bandname.hire()
     bandname.fire()
-    print("Let's start playing!!")
+    print("\nLet's start playing!!")
     bandname.bandsolos(6)
 
 if __name__ == "__main__":
